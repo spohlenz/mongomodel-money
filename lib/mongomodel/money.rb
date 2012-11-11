@@ -2,15 +2,17 @@ require 'money'
 
 class Money
   def to_mongo
-    cents
+    [cents, currency_as_string]
   end
   
-  def self.from_mongo(cents)
-    new(cents.to_i)
+  def self.from_mongo(value)
+    new(value[0], value[1]) 
+  rescue 
+    new(value.to_i)
   end
   
-  def self.cast(dollars)
-    parse(dollars) unless dollars.blank?
+  def self.cast(amount)
+    parse(amount) unless amount.blank?
   end
   
   def blank?

@@ -12,7 +12,7 @@ class Money
   end
   
   def self.cast(amount)
-    parse(amount) unless amount.blank?
+    Monetize.parse(amount) unless amount.blank?
   end
   
   def blank?
